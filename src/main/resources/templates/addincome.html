@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>添加集资记录</title>
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css">
+    <script src="../static/js/jquery-3.5.1.js"></script>
+    <script src="../static/js/bootstrap.min.js"></script>
+</head>
+<body>
+<form id="form">
+    <div class="form-group">
+        <label>QQ</label>
+        <input type="text" class="form-control" id="qq" name="qq"
+               placeholder="请输入qq">
+    </div>
+    <div class="form-group">
+        <label>金额</label>
+        <input type="number" class="form-control" id="income" name="income"
+               placeholder="请输入金额">
+    </div>
+    <div class="form-group">
+        <label>QQ</label>
+        <input type="text" class="form-control" id="date" name="date"
+               placeholder="请输入日期：YYYY-MM-DD">
+    </div>
+    <button type="submit" class="btn btn-default" onclick="add()">提交</button>
+</form>
+<script>
+    function add() {
+        $.ajax({
+            //几个参数需要注意一下
+            type: "POST",//方法类型
+            dataType: "json",//预期服务器返回的数据类型
+            url: "/income/addincome" ,//url
+            data: $('#form').serialize(),
+            success: function (result) {
+                console.log(result);//打印服务端返回的数据(调试用)
+                if (result.resultCode == 200) {
+                    alert("SUCCESS");
+                }
+            },
+            error : function() {
+                alert("异常！");
+            }
+        });
+
+    }
+</script>
+</body>
+</html>
