@@ -1,5 +1,6 @@
 package com.wjsn.repositroy;
 
+import com.wjsn.entity.DailyIncome;
 import com.wjsn.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -27,5 +28,12 @@ public interface UserRepository extends JpaRepository<User,Long> {
     void updateByQq(String qq, Double income);
 
     User findByQq(String qq);
+
+
+    //返回个人集资前10
+    @Transactional
+    @Modifying
+    @Query(value = "select * from user order by income desc , qq desc limit 10",nativeQuery = true)
+    List<User> getTop10();
 
 }

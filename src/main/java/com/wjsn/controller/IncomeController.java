@@ -10,6 +10,8 @@ import com.wjsn.vo.DayIncomeResult;
 import com.wjsn.vo.MonthIncomeResult;
 import com.wjsn.vo.WeekIncomeResult;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -35,11 +37,6 @@ public class IncomeController {
 
     @Autowired
     DailyIncomeRepository dailyIncomeRepository;
-
-    @GetMapping("/addincome.html")
-    public String add(){
-        return "/addincome";
-    }
 
     //添加单笔集资记录
     @RequestMapping("/addincome")
@@ -74,6 +71,19 @@ public class IncomeController {
         }
         return new JsonResult(users);
     }
+
+    //获取个人集资前10
+    @RequestMapping("/getTop10")
+    public JsonResult getTop10(){
+        List<User> users = userRepository.getTop10();
+        for (User u : users){
+            StringBuffer str = new StringBuffer(u.getQq());
+            str.replace(1,5,"****");
+            u.setQq(String.valueOf(str));
+        }
+        return new JsonResult(users);
+    }
+
 
     //获取每天的涨幅
     @RequestMapping("/day")
@@ -116,4 +126,6 @@ public class IncomeController {
         }
         return new JsonResult(result);
     }
+
+
 }
