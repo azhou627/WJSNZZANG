@@ -4,14 +4,31 @@
 <head>
     <meta charset="UTF-8">
     <title>WJSNZZANG</title>
+    <link rel="icon" href="image/1.jpg">
     <script src="js/jquery-3.5.1.js"></script>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <script src="js/bootstrap.min.js"></script>
     <!--<link rel="stylesheet" href="//cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="//cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
+    <style>
+        button{
+            width: 150px;
+            height:150px;
+            background-image: url("image/button.jpg");
+            background-repeat: no-repeat;
+            border-style: none;
+        }
+        .left{
+            text-shadow:none;
+        }
+
+        .carousel-control.right, .carousel-control.left{
+            background-image: none;
+        }
+    </style>
 </head>
 <body>
-<div class="container" align="center">
+<div class="container" align="center" style="width: auto">
     <div id="myCarousel" class="carousel slide">
         <!-- 轮播（Carousel）指标 -->
         <ol class="carousel-indicators">
@@ -19,7 +36,7 @@
             <li data-target="#myCarousel" data-slide-to="1"></li>
         </ol>
         <!-- 轮播（Carousel）项目 -->
-        <div class="carousel-inner">
+        <div class="carousel-inner" >
             <div class="item active">
                 <img src="image/1.jpg" alt="First slide">
             </div>
@@ -29,18 +46,23 @@
         </div>
         <!-- 轮播（Carousel）导航 -->
         <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true" style="color: #2e6da4"></span>
             <span class="sr-only">Previous</span>
         </a>
         <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true" style="color: #2e6da4"></span>
             <span class="sr-only">Next</span>
         </a>
     </div>
 </div>
-<div class="container" align="center">
-    <button class="btn btn-primary" type="button" onclick="window.location.href='/data'" >油管数据查看</button>
-    <button class="btn btn-primary" type="button" onclick="window.location.href='/income'" >油管集资查看</button>
+<div class="container" align="center" style="margin-top: 20px">
+    <button class="button" type="button" onclick="window.location.href='/data'" >油管数据查看</button>
+    <button class="button" type="button" onclick="window.location.href='/income'" >油管集资查看</button>
 </div>
+
+<script>
+    //设置轮播时间为3秒
+    $('.carousel').carousel({ interval: 3000});
+</script>
 </body>
 </html>
