@@ -1,7 +1,6 @@
 package com.wjsn.controller;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
@@ -15,17 +14,17 @@ public class IndexController {
 
     @RequestMapping("/income")
     public String getIncome(){
-        return "/income";
+        return "income";
     }
 
     @RequestMapping("/data")
     public String getData(){
-        return "/data";
+        return "data";
     }
 
     @RequestMapping("/addIncome")
     public String getAddIncome(){
-        return "/addIncome";
+        return "addIncome";
     }
 
 }
