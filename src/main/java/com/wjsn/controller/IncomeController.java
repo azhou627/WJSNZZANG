@@ -86,7 +86,7 @@ public class IncomeController {
 
 
     //获取每天的涨幅
-    @RequestMapping("/day")
+    @RequestMapping("/getDay")
     public JsonResult getDay(){
         List<IncomeList> result = new ArrayList<>();
         List<DayIncomeResult> dayList = dailyIncomeRepository.getDayData();
@@ -100,7 +100,7 @@ public class IncomeController {
     }
 
     //获取每周涨幅
-    @RequestMapping("/week")
+    @RequestMapping("/getWeek")
     public JsonResult getWeek(){
         List<IncomeList> result = new ArrayList<>();
         List<WeekIncomeResult> weekList = dailyIncomeRepository.getWeekData();
@@ -114,7 +114,7 @@ public class IncomeController {
     }
 
     //获取月涨幅
-    @RequestMapping("/month")
+    @RequestMapping("/getMonth")
     public JsonResult getMonth(){
         List<IncomeList> result = new ArrayList<>();
         List<MonthIncomeResult> monthList = dailyIncomeRepository.getMonthData();

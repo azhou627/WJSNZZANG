@@ -71,7 +71,7 @@
     $.ajax({
         type : "post",
         async : true,            //异步请求（同步请求将会锁住浏览器，用户其他操作必须等待请求完成才可以执行）
-        url : "/income/day",    //请求发送到TestServlet处
+        url : "/income/getDay",    //请求发送到TestServlet处
         data : {},
         dataType : "json",        //返回数据形式为json
         success : function(result) {
@@ -143,7 +143,7 @@
     $.ajax({
         type : "post",
         async : true,            //异步请求（同步请求将会锁住浏览器，用户其他操作必须等待请求完成才可以执行）
-        url : "/income/week",    //请求发送到TestServlet处
+        url : "/income/getWeek",    //请求发送到TestServlet处
         data : {},
         dataType : "json",        //返回数据形式为json
         success : function(result) {
@@ -197,7 +197,7 @@
 
     });
 
-    $.get('/income/month', function (result) {
+    $.get('/income/getMonth', function (result) {
         let mData = result.data;
         let colData;
         let myColumns;
