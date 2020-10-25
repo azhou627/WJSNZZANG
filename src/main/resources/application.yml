@@ -5,7 +5,7 @@ server:
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/wjsn?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf8
-    username: root
-    password: 123abc
+    url: jdbc:mysql://101.36.112.232:3306/youtube_income?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf8
+    username: xinku
+    password: wjsn0225fighting
 

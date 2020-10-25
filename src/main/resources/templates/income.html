@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <title>集资首页</title>
     <link rel="icon" href="image/1.jpg">
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-
+    <!--<link rel="stylesheet" href="css/bootstrap.min.css">-->
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
     <style>
         h1
         {
@@ -27,15 +27,20 @@
 <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
 <div class="container" id="dayIncome" style="width: 800px;height:400px;align-content: center"></div>
 <div class="container" id="weekIncome" style="width: 800px;height:400px;align-content: center"></div>
-<div class="container" style="width: 50%;align-content: center">
+<div class="container" style="width: 50%;align-content: center" align="center">
     <h3 align="center">个人集资排名</h3>
     <table class="table table-striped" id="rank"></table>
+    <a a href="javascript:void(0);" onclick="getAll()" style="align-content: center">点击查看所有排名</a>
 </div>
 
-<script src="js/jquery-3.5.1.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/echart.min.js"></script>
+<!--<script src="js/jquery-3.5.1.js"></script>-->
+<!--<script src="js/bootstrap.min.js"></script>-->
+<!--<script src="js/echart.min.js"></script>-->
+<script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+<script src="https://cdn.staticfile.org/echarts/4.3.0/echarts.min.js"></script>
+<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="https://unpkg.com/bootstrap-table@1.15.3/dist/bootstrap-table.min.js"></script>
+<!--<script src="js/bootstrap-table.js"></script>-->
 
 <script type="text/javascript">
 
@@ -175,7 +180,7 @@
         }
     });
 
-    $.get('/income/getRank', function(result){
+    $.get('/income/getTop10', function(result){
         if(result.code == '0'){
             let datalist = result.data;
             $('#rank').bootstrapTable({
@@ -194,8 +199,32 @@
             });
             $('#rank').bootstrapTable('hideLoading');
         }
-
     });
+
+    function getAll(){
+        $.get('/income/getRank', function(result){
+            $("#rank").bootstrapTable('destroy');  //重新加载需要先销毁
+            if(result.code == '0'){
+                let datalist = result.data;
+                $('#rank').bootstrapTable({
+                    data: datalist,
+                    columns :  [{
+                        field :  'qq' ,
+                        title :  'QQ',
+                        align: 'center',
+                        valign: 'middle'
+                    },  {
+                        field :  'income' ,
+                        title :  '金额',
+                        align: 'center',
+                        valign: 'middle'
+                    }]
+                });
+                $('#rank').bootstrapTable('hideLoading');
+            }
+        });
+        $('a').hide();
+    };
 
     $.get('/income/getMonth', function (result) {
         let mData = result.data;
