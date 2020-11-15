@@ -5,10 +5,7 @@ import com.wjsn.entity.User;
 import com.wjsn.repositroy.DailyIncomeRepository;
 import com.wjsn.repositroy.UserRepository;
 import com.wjsn.util.JsonResult;
-import com.wjsn.vo.IncomeList;
-import com.wjsn.vo.DayIncomeResult;
-import com.wjsn.vo.MonthIncomeResult;
-import com.wjsn.vo.WeekIncomeResult;
+import com.wjsn.vo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -64,24 +61,40 @@ public class IncomeController {
     @RequestMapping("/getRank")
     public JsonResult getRank(){
         List<User> users = userRepository.findAllByOrderByIncomeDesc();
+        List<UserVo> rslt = new ArrayList<>();
+        int i = 1;
         for (User u : users){
+            UserVo userVo = new UserVo();
+            userVo.setId(i);
+            userVo.setIncome(u.getIncome());
             StringBuffer str = new StringBuffer(u.getQq());
             str.replace(1,5,"****");
-            u.setQq(String.valueOf(str));
+            userVo.setQq(String.valueOf(str));
+
+            rslt.add(userVo);
+            i++;
         }
-        return new JsonResult(users);
+        return new JsonResult(rslt);
     }
 
     //获取个人集资前10
     @RequestMapping("/getTop10")
     public JsonResult getTop10(){
         List<User> users = userRepository.getTop10();
+        List<UserVo> rslt = new ArrayList<>();
+        int i = 1;
         for (User u : users){
+            UserVo userVo = new UserVo();
+            userVo.setId(i);
+            userVo.setIncome(u.getIncome());
             StringBuffer str = new StringBuffer(u.getQq());
             str.replace(1,5,"****");
-            u.setQq(String.valueOf(str));
+            userVo.setQq(String.valueOf(str));
+
+            rslt.add(userVo);
+            i++;
         }
-        return new JsonResult(users);
+        return new JsonResult(rslt);
     }
 
 

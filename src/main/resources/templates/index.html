@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <title>WJSNZZANG</title>
     <link rel="icon" href="image/1.jpg">
-    <!--<script src="js/jquery-3.5.1.js"></script>-->
-   <!-- <link rel="stylesheet" href="css/bootstrap.min.css">
-    <script src="js/bootstrap.min.js"></script>-->
-    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="js/jquery-3.5.1.js"></script>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <script src="js/bootstrap.min.js"></script>
+    <!--<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>-->
     <style>
         button{
             width: 150px;
@@ -63,6 +63,38 @@
 <script>
     //设置轮播时间为3秒
     $('.carousel').carousel({ interval: 3000});
+</script>
+<script type="text/javascript">
+    jQuery(document).ready(function($) {
+        $("body").click(function(e) {
+            var a_idx = getRndInteger(0,10);
+            var a = new Array("❤설아❤","❤보나❤","❤엑시❤","❤수빈❤","❤루다❤","❤다원❤","❤은서❤","❤여름❤","❤다영❤","❤연정❤","❤우주소녀❤");
+            var $i = $("<span></span>").text(a[a_idx]);
+            var x = e.pageX,
+                y = e.pageY;
+            $i.css({
+                "z-index": 999999999999999999999999999999999999999999999999999999999999999999999,
+                "top": y - 20,
+                "left": x,
+                "position": "absolute",
+                "font-weight": "bold",
+                "color": "rgb("+~~(255*Math.random())+","+~~(255*Math.random())+","+~~(255*Math.random())+")"
+            });
+            $("body").append($i);
+            $i.animate({
+                    "top": y - 180,
+                    "opacity": 0
+                },
+                1500,
+                function() {
+                    $i.remove();
+                });
+        });
+    });
+
+    function getRndInteger(min, max) {
+        return Math.floor(Math.random() * (max - min + 1) ) + min;
+    }
 </script>
 </body>
 </html>

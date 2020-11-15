@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <title>集资首页</title>
     <link rel="icon" href="image/1.jpg">
-    <!--<link rel="stylesheet" href="css/bootstrap.min.css">-->
-    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!--<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">-->
     <style>
         h1
         {
@@ -33,14 +33,14 @@
     <a a href="javascript:void(0);" onclick="getAll()" style="align-content: center">点击查看所有排名</a>
 </div>
 
-<!--<script src="js/jquery-3.5.1.js"></script>-->
-<!--<script src="js/bootstrap.min.js"></script>-->
-<!--<script src="js/echart.min.js"></script>-->
-<script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+<script src="js/jquery-3.5.1.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/echart.min.js"></script>
+<!--<script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
 <script src="https://cdn.staticfile.org/echarts/4.3.0/echarts.min.js"></script>
 <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script src="https://unpkg.com/bootstrap-table@1.15.3/dist/bootstrap-table.min.js"></script>
-<!--<script src="js/bootstrap-table.js"></script>-->
+<script src="https://unpkg.com/bootstrap-table@1.15.3/dist/bootstrap-table.min.js"></script>-->
+<script src="js/bootstrap-table.js"></script>
 
 <script type="text/javascript">
 
@@ -186,6 +186,11 @@
             $('#rank').bootstrapTable({
                 data: datalist,
                 columns :  [{
+                    field :  'id' ,
+                    title :  '排名',
+                    align: 'center',
+                    valign: 'middle'
+                },{
                     field :  'qq' ,
                     title :  'QQ',
                     align: 'center',
@@ -209,6 +214,11 @@
                 $('#rank').bootstrapTable({
                     data: datalist,
                     columns :  [{
+                        field :  'id' ,
+                        title :  '排名',
+                        align: 'center',
+                        valign: 'middle'
+                    },{
                         field :  'qq' ,
                         title :  'QQ',
                         align: 'center',
@@ -266,6 +276,38 @@
         }
     });
 
+</script>
+<script type="text/javascript">
+    jQuery(document).ready(function($) {
+        $("body").click(function(e) {
+            var a_idx = getRndInteger(0,10);
+            var a = new Array("❤설아❤","❤보나❤","❤엑시❤","❤수빈❤","❤루다❤","❤다원❤","❤은서❤","❤여름❤","❤다영❤","❤연정❤","❤우주소녀❤");
+            var $i = $("<span></span>").text(a[a_idx]);
+            var x = e.pageX,
+                y = e.pageY;
+            $i.css({
+                "z-index": 999999999999999999999999999999999999999999999999999999999999999999999,
+                "top": y - 20,
+                "left": x,
+                "position": "absolute",
+                "font-weight": "bold",
+                "color": "rgb("+~~(255*Math.random())+","+~~(255*Math.random())+","+~~(255*Math.random())+")"
+            });
+            $("body").append($i);
+            $i.animate({
+                    "top": y - 180,
+                    "opacity": 0
+                },
+                1500,
+                function() {
+                    $i.remove();
+                });
+        });
+    });
+
+    function getRndInteger(min, max) {
+        return Math.floor(Math.random() * (max - min + 1) ) + min;
+    }
 </script>
 </body>
 </html>
